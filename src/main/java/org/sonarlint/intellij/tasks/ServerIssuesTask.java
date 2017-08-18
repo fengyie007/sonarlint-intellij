@@ -46,7 +46,7 @@ import org.sonarsource.sonarlint.core.client.api.connected.ConnectedSonarLintEng
 import org.sonarsource.sonarlint.core.client.api.connected.ModuleStorageStatus;
 import org.sonarsource.sonarlint.core.container.storage.ProtobufUtil;
 import org.sonarsource.sonarlint.core.container.storage.StorageContainer;
-import org.sonarsource.sonarlint.core.container.storage.StorageManager;
+import org.sonarsource.sonarlint.core.container.storage.StoragePaths;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -158,7 +158,7 @@ public class ServerIssuesTask extends AbstractProjectComponent {
 
     private List<ScannerInput.ServerIssue> readServerIssesFromStorage(String moduleKey) throws Exception {
         StorageContainer storageContainer = ((ConnectedSonarLintEngineImpl) engine).getGlobalContainer();
-        StorageManager storageManager = storageContainer.getComponentByType(StorageManager.class);
+        StoragePaths storageManager = storageContainer.getComponentByType(StoragePaths.class);
 
         List<Path> serverFiles = new ArrayList<>();
         getRegularFiles(storageManager.getServerIssuesPath(moduleKey), serverFiles);

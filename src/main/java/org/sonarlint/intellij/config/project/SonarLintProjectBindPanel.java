@@ -25,6 +25,7 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.options.ShowSettingsUtil;
 import com.intellij.openapi.options.ex.Settings;
 import com.intellij.openapi.progress.ProgressManager;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.ui.CollectionListModel;
@@ -38,11 +39,11 @@ import com.intellij.ui.components.JBList;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.util.containers.Convertor;
+import com.intellij.util.ui.JBUI;
 import icons.SonarLintIcons;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -67,13 +68,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import org.sonarlint.intellij.config.global.SonarLintGlobalConfigurable;
 import org.sonarlint.intellij.config.global.SonarQubeServer;
-import org.sonarlint.intellij.tasks.ServerDownloadProjectTask;
 import org.sonarlint.intellij.core.SonarLintEngineManager;
+import org.sonarlint.intellij.tasks.ServerDownloadProjectTask;
 import org.sonarlint.intellij.util.SonarLintUtils;
 import org.sonarsource.sonarlint.core.client.api.connected.ConnectedSonarLintEngine;
 import org.sonarsource.sonarlint.core.client.api.connected.RemoteModule;
 import org.sonarsource.sonarlint.core.client.api.connected.StateListener;
-import com.intellij.openapi.project.Project;
 
 import static org.sonarsource.sonarlint.core.client.api.connected.ConnectedSonarLintEngine.State;
 
@@ -364,11 +364,11 @@ public class SonarLintProjectBindPanel implements Disposable {
     serverPanel.add(downloadProjectListButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE,
       GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
-    bindPanel.add(serverListLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(2, 0, 0, 0), 0, 0));
-    bindPanel.add(serverPanel, new GridBagConstraints(1, 0, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(2, 3, 0, 0), 0, 0));
-    bindPanel.add(projectListLabel, new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.NORTH, GridBagConstraints.NONE, new Insets(2, 0, 0, 0), 0, 0));
+    bindPanel.add(serverListLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, JBUI.insets(2, 0, 0, 0), 0, 0));
+    bindPanel.add(serverPanel, new GridBagConstraints(1, 0, 1, 1, 1, 0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, JBUI.insets(2, 3, 0, 0), 0, 0));
+    bindPanel.add(projectListLabel, new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.NORTH, GridBagConstraints.NONE, JBUI.insets(2, 0, 0, 0), 0, 0));
     bindPanel.add(ScrollPaneFactory.createScrollPane(projectList),
-      new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(2, 3, 0, 0), 0, 0));
+      new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, JBUI.insets(2, 3, 0, 0), 0, 0));
 
   }
 

@@ -13,7 +13,7 @@ set -euo pipefail
 
 function installTravisTools {
   mkdir ~/.local
-  curl -sSL https://github.com/SonarSource/travis-utils/tarball/v33 | tar zx --strip-components 1 -C ~/.local
+  curl -sSL https://github.com/SonarSource/travis-utils/tarball/v40 | tar zx --strip-components 1 -C ~/.local
   source ~/.local/bin/install
 }
 
@@ -58,7 +58,11 @@ CI)
         -Djava.awt.headless=true -Dawt.toolkit=sun.awt.HeadlessToolkit --stacktrace --info \
         -Dsonar.host.url=$SONAR_HOST_URL \
         -Dsonar.projectVersion=$CURRENT_VERSION \
-        -Dsonar.login=$SONAR_TOKEN
+        -Dsonar.login=$SONAR_TOKEN \
+        -Dsonar.analysis.buildNumber=$TRAVIS_BUILD_NUMBER \
+        -Dsonar.analysis.pipeline=$TRAVIS_BUILD_NUMBER \
+        -Dsonar.analysis.sha1=$TRAVIS_COMMIT  \
+        -Dsonar.analysis.repository=$TRAVIS_REPO_SLUG
   
   elif [[ "${TRAVIS_BRANCH}" == "branch-"* ]] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     strongEcho 'Build and publish in artifactory'
@@ -68,7 +72,7 @@ CI)
 
   elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN-}" ]; then
     strongEcho 'Build and analyze pull request'                                                                                                                              
-    # this pull request must be built and analyzed (without upload of report)
+    # this pull request must be built and analyzed
     ./gradlew buildPlugin check sonarqube \
         -Djava.awt.headless=true -Dawt.toolkit=sun.awt.HeadlessToolkit --stacktrace \
         -Dsonar.analysis.mode=issues \
@@ -77,6 +81,17 @@ CI)
         -Dsonar.github.oauth=$GITHUB_TOKEN \
         -Dsonar.host.url=$SONAR_HOST_URL \
         -Dsonar.login=$SONAR_TOKEN
+
+    ./gradlew sonarqube \
+        -Dsonar.host.url=$SONAR_HOST_URL \
+        -Dsonar.login=$SONAR_TOKEN \
+        -Dsonar.analysis.buildNumber=$TRAVIS_BUILD_NUMBER \
+        -Dsonar.analysis.pipeline=$TRAVIS_BUILD_NUMBER \
+        -Dsonar.analysis.sha1=$TRAVIS_PULL_REQUEST_SHA  \
+        -Dsonar.analysis.repository=$TRAVIS_REPO_SLUG \
+        -Dsonar.analysis.prNumber=$TRAVIS_PULL_REQUEST \
+        -Dsonar.branch.name=$TRAVIS_PULL_REQUEST_BRANCH \
+        -Dsonar.branch.target=$TRAVIS_BRANCH
 
   else
     strongEcho 'Build, no analysis'

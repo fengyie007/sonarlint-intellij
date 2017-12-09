@@ -2,13 +2,13 @@
 // The above triggers groovy syntax highlighting in vim
 
 plugins {
-  id "org.jetbrains.intellij" version "0.2.5"
+  id "org.jetbrains.intellij" version "0.2.17"
   id "org.sonarqube" version "2.5"
   id "java"
-  id "com.github.hierynomus.license" version "0.11.0"
-  id "net.researchgate.release" version "2.2.2"
-  id "com.jfrog.artifactory" version "4.4.0"
-  id 'com.google.protobuf' version "0.8.0"
+  id "com.github.hierynomus.license" version "0.14.0"
+  id "net.researchgate.release" version "2.6.0"
+  id "com.jfrog.artifactory" version "4.5.4"
+  id 'com.google.protobuf' version "0.8.3"
 }
 
 apply plugin: 'org.jetbrains.intellij'
@@ -33,9 +33,6 @@ intellij {
   }
   pluginName 'SonarLint'
   updateSinceUntilBuild false
-  publish {
-    pluginId '7973'
-  }
   type 'IC'
 }
 
@@ -82,9 +79,9 @@ dependencies {
   testCompile 'org.assertj:assertj-core:3.6.2'
   testCompile 'org.mockito:mockito-core:2.7.6'
   sqplugins (
-    'org.sonarsource.java:sonar-java-plugin:4.10.0.10260',
-    'org.sonarsource.javascript:sonar-javascript-plugin:3.1.1.5128',
-    'org.sonarsource.php:sonar-php-plugin:2.10.0.2087',
+    'org.sonarsource.java:sonar-java-plugin:4.15.0.12310',
+    'org.sonarsource.javascript:sonar-javascript-plugin:3.3.0.5702',
+    'org.sonarsource.php:sonar-php-plugin:2.11.0.2485',
     'org.sonarsource.python:sonar-python-plugin:1.8.0.1496'
   )
 }

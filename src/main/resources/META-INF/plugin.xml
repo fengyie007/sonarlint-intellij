@@ -19,20 +19,22 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
 
 -->
-<idea-plugin version="2" url="http://intellij.sonarlint.org/">
+<idea-plugin url="http://intellij.sonarlint.org/">
     <id>org.sonarlint.idea</id>
     <name>SonarLint</name>
     <version>${project.version}</version>
     <vendor email="sonarlint@googlegroups.com" url="http://www.sonarsource.com">SonarSource</vendor>
 
     <description><![CDATA[
-        SonarLint is an IntelliJ IDEA plugin that provides on-the-fly feedback to developers on new bugs and quality issues injected into Java, JavaScript and PHP code.
+        SonarLint is an IntelliJ IDEA plugin that provides on the fly feedback to developers on new bugs and quality issues injected into Java, JavaScript, PHP and Python code.
+        SonarLint supports SonarSource code analyzers (SonarJava, SonarJS, SonarPHP and SonarPython) as well as custom rules that extend these code analyzers.
         If your project is analyzed on SonarQube (formerly known as "Sonar"), SonarLint can connect to the server to retrieve the appropriate quality profiles and settings for that project.
         Java 8 is required to run SonarLint.
       ]]></description>
 
     <change-notes><![CDATA[
       <ul>
+        <li>3.1 - Various minor improvements and bug fixes. Updated code analyzers.</li>
         <li>3.0 - Avoid saving files when possible. Improve support of cancellation</li>
         <li>2.10 - Support of SonarQube organizations</li>
         <li>2.9 - New code analyzers included in standalone mode. Collection of usage statistics</li>

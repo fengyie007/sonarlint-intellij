@@ -42,12 +42,12 @@ import com.intellij.ui.ToolbarDecorator;
 import com.intellij.ui.awt.RelativePoint;
 import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.components.JBList;
+import com.intellij.util.ui.JBUI;
 import icons.SonarLintIcons;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -72,9 +72,9 @@ import javax.swing.border.Border;
 import javax.swing.event.HyperlinkEvent;
 import org.sonarlint.intellij.config.global.wizard.SQServerWizard;
 import org.sonarlint.intellij.config.project.SonarLintProjectSettings;
-import org.sonarlint.intellij.tasks.ServerUpdateTask;
 import org.sonarlint.intellij.core.SonarLintEngineManager;
 import org.sonarlint.intellij.messages.GlobalConfigurationListener;
+import org.sonarlint.intellij.tasks.ServerUpdateTask;
 import org.sonarlint.intellij.util.SonarLintUtils;
 import org.sonarsource.sonarlint.core.client.api.connected.ConnectedSonarLintEngine;
 import org.sonarsource.sonarlint.core.client.api.connected.GlobalStorageStatus;
@@ -196,8 +196,8 @@ public class SonarQubeServerMgmtPanel implements Disposable {
     flow2.add(updateServerButton);
     flow2.add(link);
 
-    serverStatusPanel.add(flow1, new GridBagConstraints(0, 0, 1, 1, 0.5, 1, GridBagConstraints.LINE_START, 0, new Insets(0, 0, 0, 0), 0, 0));
-    serverStatusPanel.add(flow2, new GridBagConstraints(1, 0, 1, 1, 0.5, 1, GridBagConstraints.LINE_START, 0, new Insets(0, 0, 0, 0), 0, 0));
+    serverStatusPanel.add(flow1, new GridBagConstraints(0, 0, 1, 1, 0.5, 1, GridBagConstraints.LINE_START, 0, JBUI.insets(0, 0, 0, 0), 0, 0));
+    serverStatusPanel.add(flow2, new GridBagConstraints(1, 0, 1, 1, 0.5, 1, GridBagConstraints.LINE_START, 0, JBUI.insets(0, 0, 0, 0), 0, 0));
 
     updateServerButton.setAction(new AbstractAction() {
       @Override public void actionPerformed(ActionEvent e) {
